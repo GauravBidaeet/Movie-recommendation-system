@@ -5,6 +5,9 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import requests
 
+url = "https://drive.google.com/uc?id=1ZpalYzJVKf_VClp8ZT3IdghwA0xZmRde"
+url2 = "https://drive.google.com/uc?id=1Z2-xCv9sQffOC_-vEtSqxhOs8XEaGIJs"
+
 OMDB_API_KEY = "3d8993f2"
 
 st.set_page_config(page_title="Movie Recommender", layout="wide")
@@ -12,8 +15,8 @@ st.title("Movie Recommendation System")
 
 @st.cache_data
 def load_data():
-    movies = pd.read_csv("tmdb_5000_movies.csv", encoding="latin-1")
-    credits = pd.read_csv("tmdb_5000_credits.csv", encoding="latin-1")
+    movies = pd.read_csv(url, encoding="latin-1")
+    credits = pd.read_csv(url2, encoding="latin-1")
     return movies.merge(credits, on="title")
 
 movies = load_data()
